@@ -79,6 +79,8 @@ subtest dir_empty => sub {
     ok(!dir_empty("hasdotfiles"), "hasdotfiles");
     ok(!dir_empty("hasdotdirs"), "hasdotdirs");
     ok(!dir_empty("unreadable"), "unreadable") if $>;
+
+    cmp_ok((chmod 0755, "unreadable"), '>=', 0, "Ensure tempdir CLEANUP");
 };
 
 DONE_TESTING:
